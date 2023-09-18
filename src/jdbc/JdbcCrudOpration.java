@@ -19,11 +19,8 @@ public class JdbcCrudOpration {
 			String userName = "root";
 			String password = "root";
 			Connection con = DriverManager.getConnection(url, userName, password);
-			String query = "insert into Emp_Details(Emp_id,Emp_Name,Emp_age,Emp_Gender)values(?,?,?,?)";
+			String query = "insert into Emp_Details(Emp_Name,Emp_age,Emp_Gender)values(?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(query);
-
-			System.out.println("entre Emp_Id...");
-			String Emp_Id = br.readLine();
 
 			System.out.println("entre Emp_Name...");
 			String Emp_Name = br.readLine();
@@ -123,15 +120,15 @@ public class JdbcCrudOpration {
 			PreparedStatement pre = con.prepareStatement(fetch);
 			ResultSet execute = pre.executeQuery();
 			if (execute.next()) {
-				System.out.println(execute.getString("Emp_Id") + "/" + execute.getString("Emp_Name") + "/"
-						+ execute.getString("Emp_Age") + "/" + execute.getString("Emp_Gender"));
+				System.out.println(execute.getString("emp_id") + "/" + execute.getString("emp_name") + "/" + execute.getString("Emp_age") + "/"
+						+ execute.getString("Emp_Gender"));
 			}
 		} catch (Exception e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
-	public static void autorun() throws IOException,ClassNotFoundException,SQLException {
+	public static void autorun() throws IOException, ClassNotFoundException, SQLException {
 		System.out.println("which you want to choose (insert/update/delete/getFetch)");
 		String choose = br.readLine();
 		switch (choose) {
